@@ -6,20 +6,15 @@
 #include <exception>
 
 bool equals(double, double, uint8_t precision);
-
 void setBit(int& src, uint8_t bit);
 void revertBit(int& src, uint8_t bit);
-
 bool addVector(const int* src1, const int* src2, int* dst, std::size_t size); 
-
 void printDemo1(double x, double y, uint8_t prec);
-
 void printArray(const int* array, std::size_t size);
 
 int main()
 {
     // Demo1
-
     std::cout << "--------- Demo1 --------" << std::endl; 
     double x = 0.100000000009;
     double y = 0.1;
@@ -30,10 +25,10 @@ int main()
     std::cout << std::endl;   
     
     //Demo2
-
     std::cout << "--------- Demo2 ---------" << std::endl;
     int number = 32;
-    for (int i = 0; i < 4; ++i)
+    const uint8_t digits = 4;
+    for (int i = 0; i < digits; ++i)
     {
         setBit(number, i);
         std::bitset<8> b(number);
@@ -42,10 +37,9 @@ int main()
     std::cout << std::endl;
     
     //Demo3
-
     std::cout << "--------- Demo3 ---------" << std::endl;
     number = 31;
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < digits; ++i)
     {
         revertBit(number, i);
         std::bitset<8> b(number);
@@ -56,17 +50,14 @@ int main()
     //Demo4
     std::cout << "--------- Demo4 ---------" << std::endl;
 
-    std::size_t size = 10;
-    int arrayEven [size] = {0, 2, 4, 6, 8, 10, 12, 14, 16, 18};
-    int arrayOdd [size] = {9, 7, 5, 3, 1, -1, -3, -5, -7, -9};
-
+    const std::size_t size = 10;
+    int arrayEven [] {0, 2, 4, 6, 8, 10, 12, 14, 16, 18};
+    int arrayOdd [] {9, 7, 5, 3, 1, -1, -3, -5, -7, -9};
     int arraySum [size];
-
     printArray(arrayEven, size);
     printArray(arrayOdd, size);
     if (addVector(arrayEven, arrayOdd, arraySum, size))
         printArray(arraySum, size);
-
     std::cout << std::endl;
 }
 
