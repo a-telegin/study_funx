@@ -89,6 +89,8 @@ bool addVector(const int* src1, const int* src2, int* dst, std::size_t size)
     const int size_c = static_cast<int>(size);
     try
     {
+        if (!(src1 && src2))
+             throw "Null pointer exception!";
         for(int i = 0; i < size_c; ++i)
         {
             dst[i] = src1[i] + src2[i];
@@ -103,12 +105,21 @@ bool addVector(const int* src1, const int* src2, int* dst, std::size_t size)
 
 void printArray(const int* array, std::size_t size)
 {
-    const int size_c = static_cast<int>(size);
-    std::cout << "{ "; 
-    for (int i = 0; i < size_c; ++i) 
+    try
     {
-        std::cout << array[i] << " ";
+        if (!array)
+            throw "Null pointer exception!"
+        const int size_c = static_cast<int>(size);
+        std::cout << "{ "; 
+        for (int i = 0; i < size_c; ++i) 
+        {
+            std::cout << array[i] << " ";
+        }
+        std::cout << "}" << std::endl;
     }
-    std::cout << "}" << std::endl;
+    catch(std::exception &e)
+    {
+        std::cout << "Exception!" << std::endl;
+    }
 }
 
